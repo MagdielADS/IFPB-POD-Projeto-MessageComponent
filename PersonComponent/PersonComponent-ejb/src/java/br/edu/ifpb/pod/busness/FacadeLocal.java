@@ -1,0 +1,22 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+package br.edu.ifpb.pod.busness;
+
+import br.edu.ifpb.pod.entities.Message;
+import br.edu.ifpb.pod.entities.Person;
+import java.io.ByteArrayInputStream;
+
+/**
+ *
+ * @author Magdiel Bruno
+ */
+public interface FacadeLocal {
+    public void registerPerson(Person person);
+    public String sendPhotos(ByteArrayInputStream... person);
+    public boolean authAdministrator(String login, String password);
+    public void registerMessage(Message message);
+}

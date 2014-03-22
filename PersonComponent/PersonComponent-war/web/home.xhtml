@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <h:form>  
+            <p:growl id="messages"/>  
+            <p:menubar>  
+                <p:submenu label="Pessoa" icon="ui-icon-document">
+                    <p:menuitem value="Cadastrar" url="register.xhtml" icon="ui-icon-arrowreturnthick-1-e" />  
+                    <p:separator />  
+                    <p:menuitem value="Atualizar" url="update.xhtml" icon="ui-icon-arrowreturnthick-1-e" /> 
+                    <p:separator />  
+                    <p:menuitem value="Excluir" url="remove.xhtml" icon="ui-icon-arrowreturnthick-1-e" /> 
+                    <p:separator />  
+                    <p:menuitem value="Consultar" url="search.xhtml" icon="ui-icon-arrowreturnthick-1-e" /> 
+                </p:submenu>  
+
+                <p:submenu label="Menssagem" icon="ui-icon-pencil">  
+                    <p:menuitem value="Enviar" url="sendMessage.xhtml" icon="ui-icon-arrowreturnthick-1-e" />   
+                </p:submenu>  
+
+                <p:menuitem value="Sair" url="index.xhtml" action="#{loginBean.logout()}" icon="ui-icon-arrowreturnthick-1-e" />  
+            </p:menubar>  
+        </h:form>
+    </h:body>
+</html>
+
