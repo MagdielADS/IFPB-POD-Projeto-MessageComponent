@@ -22,8 +22,20 @@
                     
                     <h:outputLabel value="Email: *" />  
                     <p:inputText id="email" value="#{personBean.email}" size="60" required="true"/>
+                    
+                    <h:outputLabel value="Foto 1: *" />  
+                    <p:inputText id="p1" value="#{personBean.photo1}" size="60" required="true"/>
+                    
+                    <h:outputLabel value="Foto 2: *" />  
+                    <p:inputText id="p2" value="#{personBean.photo2}" size="60" required="true"/>
+                    
+                    <h:outputLabel value="Foto 3: *" />  
+                    <p:inputText id="p3" value="#{personBean.photo3}" size="60" required="true"/>
+                    
+                    <h:outputLabel value="Foto 4: *" />  
+                    <p:inputText id="p4" value="#{personBean.photo4}" size="60" required="true"/> 
 
-                    <p:commandButton id="saveButton" action="#{personBean.register()}" update="matchGrid" value="Salvar" /> 
+                    <p:commandButton action="#{personBean.register()}" value="Salvar" /> 
                 </h:panelGrid>  
 
 

@@ -60,7 +60,7 @@ public class FacadeImpl implements FacadeLocal{
         }else{
             return false;
         }
-    }   
+    } 
 
     @Override
     public void registerMessage(Message message) {

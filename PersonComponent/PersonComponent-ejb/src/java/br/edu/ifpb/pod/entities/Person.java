@@ -6,14 +6,16 @@
 
 package br.edu.ifpb.pod.entities;
 
-import java.io.ByteArrayInputStream;
 import java.io.Serializable;
 import java.util.List;
+import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.OneToMany;
 
 /**
@@ -31,10 +33,14 @@ public class Person implements Serializable{
     private String cpf;
     @Column(length=40, nullable = false, unique=true)
     private String email;
-    private ByteArrayInputStream[] photo1;
-    private ByteArrayInputStream[] photo2;
-    private ByteArrayInputStream[] photo3;
-    private ByteArrayInputStream[] photo4;
+    @Lob @Basic(fetch= FetchType.EAGER) 
+    private byte[] photo1;
+    @Lob @Basic(fetch= FetchType.EAGER) 
+    private byte[] photo2;
+    @Lob @Basic(fetch= FetchType.EAGER) 
+    private byte[] photo3;
+    @Lob @Basic(fetch= FetchType.EAGER) 
+    private byte[] photo4;
     private String token;
     @OneToMany
     private List<Message> messages;
@@ -42,8 +48,6 @@ public class Person implements Serializable{
     public void addMessage(Message message){
         messages.add(message);
     }
-    
-    
     
     public Long getId() {
         return id;
@@ -77,39 +81,51 @@ public class Person implements Serializable{
         this.email = email;
     }
 
-    public ByteArrayInputStream[] getPhoto1() {
+    public byte[] getPhoto1() {
         return photo1;
     }
 
-    public void setPhoto1(ByteArrayInputStream[] photo1) {
+    public void setPhoto1(byte[] photo1) {
         this.photo1 = photo1;
     }
 
-    public ByteArrayInputStream[] getPhoto2() {
+    public byte[] getPhoto2() {
         return photo2;
     }
 
-    public void setPhoto2(ByteArrayInputStream[] photo2) {
+    public void setPhoto2(byte[] photo2) {
         this.photo2 = photo2;
     }
 
-    public ByteArrayInputStream[] getPhoto3() {
+    public byte[] getPhoto3() {
         return photo3;
     }
 
-    public void setPhoto3(ByteArrayInputStream[] photo3) {
+    public void setPhoto3(byte[] photo3) {
         this.photo3 = photo3;
     }
 
-    public ByteArrayInputStream[] getPhoto4() {
+    public byte[] getPhoto4() {
         return photo4;
     }
 
-    public void setPhoto4(ByteArrayInputStream[] photo4) {
+    public void setPhoto4(byte[] photo4) {
         this.photo4 = photo4;
     }
 
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
+    }
+    
     public List<Message> getMessages() {
         return messages;
+    }
+    
+    public void setMessages(List<Message> messages) {
+        this.messages = messages;
     }
 }

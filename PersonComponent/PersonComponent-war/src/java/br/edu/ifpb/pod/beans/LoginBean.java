@@ -8,6 +8,7 @@ package br.edu.ifpb.pod.beans;
 
 import br.edu.ifpb.pod.busness.FacadeLocal;
 import javax.ejb.EJB;
+import javax.enterprise.context.RequestScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
@@ -16,7 +17,7 @@ import javax.faces.bean.SessionScoped;
  * @author Magdiel Bruno
  */
 @ManagedBean(name = "loginBean")
-@SessionScoped
+@RequestScoped
 public class LoginBean {
     @EJB
     FacadeLocal facade;
