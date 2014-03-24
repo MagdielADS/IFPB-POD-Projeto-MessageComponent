@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package br.edu.ifpb.pod.busness;
+package br.edu.ifpb.pod.business;
 
 import br.edu.ifpb.pod.entities.Message;
 import br.edu.ifpb.pod.entities.Person;
@@ -65,7 +65,7 @@ public class FacadeImpl implements FacadeLocal{
     @Override
     public String sendPhotos(ByteArrayInputStream... photos) {
         try {
-            OpenCVRemoteService open = (OpenCVRemoteService) Naming.lookup("rmi://200.129.71/OpenCVService");
+            OpenCVRemoteService open = (OpenCVRemoteService) Naming.lookup("rmi://200.129.71/8686/OpenCVService");
             return open.registry(photos);
         } catch (NotBoundException | MalformedURLException | RemoteException ex) {
             Logger.getLogger(FacadeImpl.class.getName()).log(Level.SEVERE, null, ex);

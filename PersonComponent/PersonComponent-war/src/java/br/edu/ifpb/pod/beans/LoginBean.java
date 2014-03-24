@@ -6,7 +6,7 @@
 
 package br.edu.ifpb.pod.beans;
 
-import br.edu.ifpb.pod.busness.FacadeLocal;
+import br.edu.ifpb.pod.business.FacadeLocal;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.bean.ManagedBean;

@@ -6,7 +6,7 @@
 
 package br.edu.ifpb.pod.testes;
 
-import br.edu.ifpb.pod.busness.FacadeLocal;
+import br.edu.ifpb.pod.business.FacadeLocal;
 import br.edu.ifpb.pod.entities.Person;
 import javax.ejb.EJB;
 

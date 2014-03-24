@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package br.edu.ifpb.pod.busness;
+package br.edu.ifpb.pod.business;
 
 import br.edu.ifpb.pod.entities.Person;
 import java.rmi.RemoteException;
@@ -26,9 +26,10 @@ public class SearchPersonRemoteServiceImpl extends UnicastRemoteObject implement
     }
 
     @Override
-    public Person searchPerson(String email) throws RemoteException {
+    public String searchPerson(String email) throws RemoteException {
         Query query = manager.createQuery("select p from Person p where p.email:=email");
         query.setParameter("email", email);
-        return (Person) query.getSingleResult();
+        Person p = (Person) query.getSingleResult();
+        return p.getEmail()+"-"+p.getName();
     }        
 }

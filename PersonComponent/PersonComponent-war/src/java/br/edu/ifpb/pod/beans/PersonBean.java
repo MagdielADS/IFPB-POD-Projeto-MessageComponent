@@ -6,7 +6,7 @@
 
 package br.edu.ifpb.pod.beans;
 
-import br.edu.ifpb.pod.busness.FacadeLocal;
+import br.edu.ifpb.pod.business.FacadeLocal;
 import br.edu.ifpb.pod.entities.Message;
 import br.edu.ifpb.pod.entities.Person;
 import java.io.ByteArrayInputStream;

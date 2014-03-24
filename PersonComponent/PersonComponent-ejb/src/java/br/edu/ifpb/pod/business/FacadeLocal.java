@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package br.edu.ifpb.pod.busness;
+package br.edu.ifpb.pod.business;
 
 import br.edu.ifpb.pod.entities.Message;
 import br.edu.ifpb.pod.entities.Person;
