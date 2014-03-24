@@ -6,7 +6,7 @@
 
 package br.edu.ifpb.pod.business;
 
-import br.edu.ifpb.pod.entities.User;
+import br.edu.ifpb.pod.entities.Person;
 import br.edu.ifpb.pod.opencv.server.OpenCVRemoteService;
 import java.io.ByteArrayInputStream;
 import java.net.MalformedURLException;
@@ -33,7 +33,7 @@ public class AutenticatorUserServiceImpl extends UnicastRemoteObject implements 
     @Override
     public String authUser(ByteArrayInputStream photo) throws RemoteException {
         try {
-            User user = new User();
+            Person user = new Person();
             OpenCVRemoteService open = (OpenCVRemoteService) Naming.lookup("rmi://200.129.71/OpenCVService");
             String token = open.recognize(photo);
             user.setToken(token);
@@ -47,21 +47,30 @@ public class AutenticatorUserServiceImpl extends UnicastRemoteObject implements 
 
     @Override
     public String validatedToken(String token) throws RemoteException {
-        User u = new User();
+        Person u = new Person();
         u = facade.validatedToken(token);
         if(u!=null){
             this.notifySendMessage(u);
-            String control = "TRUE-"+u.getName()+"-"+u.getEmail()+"-"+u.getMessage();
-            return control;
+            try {
+                SearchPersonRemoteService search = (SearchPersonRemoteService) Naming.lookup("rmi:/localhost/8686/SearchService");
+                String user = search.searchPerson(u.getEmail());
+                String control = "TRUE-"+user.split("\\-")+"."+user.split("\\.")+"@"+u.getMessage();
+                return control;
+            } catch (    NotBoundException | MalformedURLException ex) {
+                Logger.getLogger(AutenticatorUserServiceImpl.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }else{
             return "FALSE";
         }
+        return "FALSE";
     }
     
-    public void notifySendMessage(User u){
-        User us = new User();
+    public void notifySendMessage(Person u){
+        Person us = new Person();
         us = facade.find(u);
         us.setvToken(false);
         facade.merge(us);
     }
+    
+    
 }

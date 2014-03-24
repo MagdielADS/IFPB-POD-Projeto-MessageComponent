@@ -6,7 +6,7 @@
 
 package br.edu.ifpb.pod.business;
 
-import br.edu.ifpb.pod.entities.User;
+import br.edu.ifpb.pod.entities.Person;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
@@ -27,37 +27,37 @@ public class FacadeImpl implements Facade{
     private EntityManager manager;
 
     @Override
-    public void persist(User u) {
+    public void persist(Person u) {
         manager.persist(u);
     }
 
     @Override
-    public void merge(User u) {
+    public void merge(Person u) {
         manager.merge(u);
     }
 
     @Override
-    public void remove(User u) {
+    public void remove(Person u) {
         manager.remove(u);
     }
 
     @Override
-    public User find(User u) {
-        User user = new User();
-        user = manager.find(User.class, u.getId());
+    public Person find(Person u) {
+        Person user = new Person();
+        user = manager.find(Person.class, u.getId());
         return user;
     }
 
     @Override
-    public User validatedToken(String token) {
+    public Person validatedToken(String token) {
         try{
-            User u = new User();
+            Person u = new Person();
             Calendar c = new GregorianCalendar();
             Date d = new Date();
             c.setTime(d);
             Query query = manager.createQuery("select u from User u where u.token:=token");
             query.setParameter("token", token);
-            u = (User) query.getSingleResult();
+            u = (Person) query.getSingleResult();
             
             if((c.get(Calendar.HOUR_OF_DAY))-(u.getHourCreateToken().get(Calendar.HOUR_OF_DAY))<=1){
                 return u;

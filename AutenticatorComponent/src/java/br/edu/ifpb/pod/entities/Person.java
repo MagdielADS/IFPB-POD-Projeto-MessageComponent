@@ -22,7 +22,7 @@ import javax.persistence.TemporalType;
  * @author Magdiel Bruno
  */
 @Entity
-public class User {
+public class Person {
     @Id
     @GeneratedValue(generator = "seq_user", strategy = GenerationType.SEQUENCE)
     private Long id;

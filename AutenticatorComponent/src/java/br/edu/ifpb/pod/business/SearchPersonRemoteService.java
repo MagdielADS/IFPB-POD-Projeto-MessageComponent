@@ -6,16 +6,13 @@
 
 package br.edu.ifpb.pod.business;
 
-import br.edu.ifpb.pod.entities.Person;
+import java.rmi.Remote;
+import java.rmi.RemoteException;
 
 /**
  *
  * @author Magdiel Bruno
  */
-public interface Facade {
-    public void persist(Person u);
-    public void merge(Person u);
-    public void remove(Person u);
-    public Person find(Person u);
-    public Person validatedToken(String token);
+public interface SearchPersonRemoteService extends Remote{
+     public String searchPerson(String email) throws RemoteException;
 }
