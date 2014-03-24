@@ -7,17 +7,28 @@
 package br.edu.ifpb.pod.busness;
 
 import br.edu.ifpb.pod.entities.Person;
-import java.lang.annotation.Annotation;
+import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 /**
  *
  * @author Magdiel Bruno
  */
-public class SearchPersonRemoteServiceImpl implements SearchPersonRemoteService{
+public class SearchPersonRemoteServiceImpl extends UnicastRemoteObject implements SearchPersonRemoteService{
+    @PersistenceContext(unitName = "Pod-PU")
+    private EntityManager manager;
+    
+    public SearchPersonRemoteServiceImpl() throws RemoteException{
+        super();
+    }
 
     @Override
-    public Person searchPerson(String email) {
-        return null;
-    }  
+    public Person searchPerson(String email) throws RemoteException {
+        Query query = manager.createQuery("select p from Person p where p.email:=email");
+        query.setParameter("email", email);
+        return (Person) query.getSingleResult();
+    }        
 }

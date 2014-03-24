@@ -6,16 +6,17 @@
 
 package br.edu.ifpb.pod.testes;
 
+import br.edu.ifpb.pod.busness.FacadeLocal;
 import br.edu.ifpb.pod.entities.Person;
+import javax.ejb.EJB;
 
 /**
  *
  * @author Magdiel Bruno
  */
 public class AppTeste {
+    
     public static void main(String[] args) {
-        Person person = new Person();
-        //person.Photo1("c:\\Bibliotecas\\Imagens\\OpeningWindow.jpg");
-        System.out.println(person.getPhoto1());
+        
     }
 }

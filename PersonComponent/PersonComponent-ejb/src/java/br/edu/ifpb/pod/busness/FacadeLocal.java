@@ -9,6 +9,7 @@ package br.edu.ifpb.pod.busness;
 import br.edu.ifpb.pod.entities.Message;
 import br.edu.ifpb.pod.entities.Person;
 import java.io.ByteArrayInputStream;
+import java.util.List;
 
 /**
  *
@@ -16,7 +17,11 @@ import java.io.ByteArrayInputStream;
  */
 public interface FacadeLocal {
     public void registerPerson(Person person);
+    public void updatePerson(Person person);
+    public void removePerson(Person person);
+    public List<Person> listPerson();
     public String sendPhotos(ByteArrayInputStream... person);
     public boolean authAdministrator(String login, String password);
     public void registerMessage(Message message);
+    public Person searchPersonById(Long id);
 }

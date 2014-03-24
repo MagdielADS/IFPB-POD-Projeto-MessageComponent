@@ -8,11 +8,12 @@ package br.edu.ifpb.pod.busness;
 
 import br.edu.ifpb.pod.entities.Person;
 import java.rmi.Remote;
+import java.rmi.RemoteException;
 
 /**
  *
  * @author Magdiel Bruno
  */
 public interface SearchPersonRemoteService extends Remote{
-     public Person searchPerson(String email);
+     public Person searchPerson(String email) throws RemoteException;
 }

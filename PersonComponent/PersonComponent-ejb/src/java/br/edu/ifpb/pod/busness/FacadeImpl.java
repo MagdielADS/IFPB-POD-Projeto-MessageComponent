@@ -9,21 +9,19 @@ package br.edu.ifpb.pod.busness;
 import br.edu.ifpb.pod.entities.Message;
 import br.edu.ifpb.pod.entities.Person;
 import br.edu.ifpb.pod.rmi.opencv.server.OpenCVRemoteService;
-import br.edu.ifpb.pod.rmi.opencv.server.OpenCVRemoteServiceException;
 import java.io.ByteArrayInputStream;
 import java.net.MalformedURLException;
 import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.Local;
-import javax.ejb.Remote;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
-import sun.awt.image.ByteArrayImageSource;
 
 /**
  *
@@ -40,6 +38,28 @@ public class FacadeImpl implements FacadeLocal{
     @Override
     public void registerPerson(Person person) {
         manager.persist(person);
+    }
+    
+    @Override
+    public void registerMessage(Message message) {
+        manager.persist(message);
+    }
+
+    @Override
+    public void updatePerson(Person person) {
+        manager.merge(person);
+    }
+
+    @Override
+    public void removePerson(Person person) {
+        Person p = manager.merge(person);
+        manager.remove(p);
+    }
+
+    @Override
+    public List<Person> listPerson() {
+        Query query = manager.createQuery("select p from Person p");
+        return query.getResultList();
     }
 
     @Override
@@ -60,10 +80,12 @@ public class FacadeImpl implements FacadeLocal{
         }else{
             return false;
         }
-    } 
-
+    }
+    
     @Override
-    public void registerMessage(Message message) {
-        manager.persist(message);
-    }    
+    public Person searchPersonById(Long id) {
+        Query query = manager.createQuery("select p from Person p where p.id:=id");
+        query.setParameter("id", id);
+        return (Person) query.getSingleResult();
+    }
 }

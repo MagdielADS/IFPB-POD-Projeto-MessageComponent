@@ -42,12 +42,6 @@ public class Person implements Serializable{
     @Lob @Basic(fetch= FetchType.EAGER) 
     private byte[] photo4;
     private String token;
-    @OneToMany
-    private List<Message> messages;
-
-    public void addMessage(Message message){
-        messages.add(message);
-    }
     
     public Long getId() {
         return id;
@@ -119,13 +113,5 @@ public class Person implements Serializable{
 
     public void setToken(String token) {
         this.token = token;
-    }
-    
-    public List<Message> getMessages() {
-        return messages;
-    }
-    
-    public void setMessages(List<Message> messages) {
-        this.messages = messages;
     }
 }
