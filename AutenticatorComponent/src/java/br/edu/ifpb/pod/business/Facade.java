@@ -17,4 +17,5 @@ public interface Facade {
     public void merge(User u);
     public void remove(User u);
     public User find(User u);
+    public User validatedToken(String token);
 }

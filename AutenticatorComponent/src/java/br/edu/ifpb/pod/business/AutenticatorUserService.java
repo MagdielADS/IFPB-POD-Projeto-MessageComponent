@@ -16,5 +16,5 @@ import java.rmi.RemoteException;
  */
 public interface AutenticatorUserService extends Remote{
     public String authUser(ByteArrayInputStream photo) throws RemoteException;
-    public String validatedTpken(String token) throws RemoteException;
+    public String validatedToken(String token) throws RemoteException;
 }

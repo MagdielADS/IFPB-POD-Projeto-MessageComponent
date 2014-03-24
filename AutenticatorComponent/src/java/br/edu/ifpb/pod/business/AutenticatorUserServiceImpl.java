@@ -46,9 +46,22 @@ public class AutenticatorUserServiceImpl extends UnicastRemoteObject implements 
     }
 
     @Override
-    public String validatedTpken(String token) throws RemoteException {
-        
+    public String validatedToken(String token) throws RemoteException {
+        User u = new User();
+        u = facade.validatedToken(token);
+        if(u!=null){
+            this.notifySendMessage(u);
+            String control = "TRUE-"+u.getName()+"-"+u.getEmail()+"-"+u.getMessage();
+            return control;
+        }else{
+            return "FALSE";
+        }
     }
     
-    
+    public void notifySendMessage(User u){
+        User us = new User();
+        us = facade.find(u);
+        us.setvToken(false);
+        facade.merge(us);
+    }
 }
